@@ -144,7 +144,7 @@ export default function Headers() {
               <DropdownMenu>
                 <DropdownMenuTrigger>
                   <Avatar>
-                    <AvatarImage src={user?.user_metadata?.profile_pic} />
+                    <AvatarImage src={user?.user_metadata?.profile_pic} className="object-cover" />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
