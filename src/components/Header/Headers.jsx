@@ -141,25 +141,40 @@ export default function Headers() {
             {!user ? (
               <Button onClick={() => navigate("/auth")}>Login</Button>
             ) : (
-              <DropdownMenu>
+              <DropdownMenu className="">
                 <DropdownMenuTrigger>
                   <Avatar>
-                    <AvatarImage src={user?.user_metadata?.profile_pic} className="object-cover" />
+                    <AvatarImage
+                      src={user?.user_metadata?.profile_pic}
+                      className="object-cover"
+                    />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>
-                    {user?.user_metadata?.name}
+                <DropdownMenuContent className=" w-40">
+                  <DropdownMenuLabel className="text-center">
+                    {"Welcome," + user?.user_metadata?.name}
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     <LinkIcon className="mr-2" />
-                    <span>My Orders</span>
+                    <span
+                      onClick={() => {
+                        navigate("/orders");
+                      }}
+                    >
+                      My Orders
+                    </span>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Heart className="mr-2" />
-                    <span>WishList</span>
+                    <Heart className="mr-2 text-pink-600" />
+                    <span
+                      onClick={() => {
+                        navigate("/wishlist");
+                      }}
+                    >
+                      WishList
+                    </span>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="text-red-600">
                     <LogOut className="mr-2" />

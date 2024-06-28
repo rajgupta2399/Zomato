@@ -10,6 +10,8 @@ import Footer from "./components/Footer/Footer";
 import Auth from "./components/Auth/Auth";
 import UrlProvider from "./Context";
 import RequireAuth from "./components/Auth/RequireAuth";
+import Wishlist from "./components/Wishlist/Wishlist";
+import Orders from "./components/Orders/Orders";
 
 function App() {
   return (
@@ -55,6 +57,24 @@ export const appRouter = createBrowserRouter([
         element: (
           <RequireAuth>
             <Contact />,
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "/wishlist",
+
+        element: (
+          <RequireAuth>
+            <Wishlist />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "/orders",
+
+        element: (
+          <RequireAuth>
+            <Orders/>
           </RequireAuth>
         ),
       },
