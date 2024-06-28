@@ -128,14 +128,14 @@ export default function Headers() {
               <i className="fa-regular fa-life-ring px-2"></i>
               Help
             </Link>
-            <a
-              href="#"
+            <Link
+              to="/cart"
               className="text-sm font-semibold leading-6 text-gray-900  hover:text-red-600 transition ease-in delay-100 cursor-pointer "
               style={styleCard}
             >
               <FaCartShopping className="inline-block text-xl mr-1 mb-1" />
               Cart
-            </a>
+            </Link>
           </Popover.Group>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-3">
             {!user ? (

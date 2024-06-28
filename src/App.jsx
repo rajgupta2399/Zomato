@@ -12,6 +12,7 @@ import UrlProvider from "./Context";
 import RequireAuth from "./components/Auth/RequireAuth";
 import Wishlist from "./components/Wishlist/Wishlist";
 import Orders from "./components/Orders/Orders";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
@@ -57,6 +58,15 @@ export const appRouter = createBrowserRouter([
         element: (
           <RequireAuth>
             <Contact />,
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "/cart",
+
+        element: (
+          <RequireAuth>
+            <Cart/>,
           </RequireAuth>
         ),
       },
