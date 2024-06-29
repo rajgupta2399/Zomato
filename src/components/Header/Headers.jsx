@@ -202,9 +202,6 @@ export default function Headers() {
               {theme === "light" ? <MoonIcon /> : <SunIcon />}
             </button>
           </div>
-          {loading && (
-            <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />
-          )}
         </nav>
         <Dialog
           className="lg:hidden"

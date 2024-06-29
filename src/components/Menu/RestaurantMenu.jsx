@@ -40,20 +40,24 @@ const RestaurantMenu = () => {
     fetchMenu();
   }, []);
 
+  
   const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json();
-    console.log(json.data);
-    SetMenu(json.data);
-    setOffer(
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
-    );
-    // console.log(
-    //   json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
-    // );
+    try {
+      const response = await fetch(MENU_API + resId);
+      const data = await response.json();
+      console.log(data.data);
+      SetMenu(data.data);
+      setOffer(
+        data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers || []
+      );
+    } catch (error) {
+      console.error("Failed to fetch menu:", error);
+    }
   };
 
   if (menu === null) return <SkeletonRestContainer />;
+
+  if (!menu) return <p>Restaurant not available</p>;
 
   const { text } = menu?.cards[0]?.card?.card;
 
@@ -76,6 +80,7 @@ const RestaurantMenu = () => {
     menu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card;
 
   if (!itemCards || itemCards.length === 0) return null;
+  if (!itemCards || itemCards.length === 0) return <p>Restaurant not available</p>;
 
   return (
     <div>
