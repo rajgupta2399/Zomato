@@ -48,9 +48,9 @@ const Body = () => {
         <div className="flex justify-center align-middle">
           <InputButton SearchText={ParentAlert} />
         </div>
-        <div className=" mx-5 mb-5">
+        <div className=" mx-5 mb-5 topRatedButton">
           <button
-            className=" border-2 border-red-700 p-2 bg-[#d00000] hover:bg-transparent light:bg-white rounded-lg"
+            className=" border-2 border-red-700 p-2 bg-[#d00000] hover:bg-transparent light:bg-white rounded-lg topRatedButton"
             onClick={() => {
               const filterLogic = filterRestaurants.filter((res) => {
                 return res.info.avgRating > 4.2;
@@ -63,14 +63,14 @@ const Body = () => {
         </div>
       </div>
 
-      <div className="flex gap-5 flex-wrap flex-row">
+      <div className="flex gap-5 flex-wrap flex-row restCards">
         {filterRestaurants.map((restaurant, index) => (
           <Link
             to={"/restaurants/" + restaurant.info.id}
             key={restaurant.info.id}
           >
             <RestaurantCard resData={restaurant} key={restaurant.info.id} />
-          </Link>
+          </Link> 
         ))}
       </div>
     </div>

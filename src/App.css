@@ -5,3 +5,38 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+@media (min-width:100px) and (max-width:600px){
+  .img{
+    height: 40px;
+  }
+  .text{
+    font-size: 15px;
+  } 
+  .searchInput{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .searchInputButton{
+    width: 120px;
+  }
+  .heading{
+    text-align: center;
+    margin-top: 25px;
+  }
+  .topRatedButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 25px;
+  }
+  .restCards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+}

@@ -30,7 +30,7 @@ function InputButton(props) {
   }, []);
 
   return (
-    <div className="flex w-full max-w-sm items-center space-x-2">
+    <div className="flex w-full max-w-sm items-center space-x-2 searchInput">
       <Input
         type="email"
         placeholder="Search For Restaurant"
@@ -44,7 +44,7 @@ function InputButton(props) {
       />
       <Button
         type="submit"
-        className="bg-red-500 hover:bg-red-600"
+        className="bg-red-500 hover:bg-red-600 searchInputButton"
         onClick={() => SearchText(filteredRestaurants)}
       >
         Search

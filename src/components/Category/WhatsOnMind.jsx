@@ -2,6 +2,7 @@ import * as React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 import { CDN_URL } from "../Utils/Constant";
+import useMediaQuery from "../Hook/useMediaQuery";
 import {
   Carousel,
   CarouselContent,
@@ -17,6 +18,10 @@ import NewSkeleton from "./NewSkeleton";
 //   border-2 border-blue-700
 
 const WhatsOnMind = () => {
+
+  const isMobile = useMediaQuery('(min-width: 100px) and (max-width: 600px)');
+
+  
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7111675&lng=77.0722759&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -36,11 +41,15 @@ const WhatsOnMind = () => {
 
   const [category, setCategory] = useState([]);
 
+  if (isMobile) {
+    return null;
+  }
+
   return category.length === 0 ? (
-        <NewSkeleton/>
+    <NewSkeleton />
   ) : (
     <>
-      <div className="max-w-[1230px] mx-auto mt-6">
+      <div className="max-w-[1230px] mx-auto mt-6 small">
         <div className="my-5">
           <div className=" text-[24px] font-semibold">What's on your mind?</div>
         </div>
@@ -70,7 +79,11 @@ const WhatsOnMind = () => {
                       <Card className=" cursor-pointer">
                         <CardContent className="flex items-center justify-center p-1">
                           <div height="180" width="144" className="">
-                            <img src={CDN_URL + item.imageId} alt="" className=" object-cover rounded-sm"/>
+                            <img
+                              src={CDN_URL + item.imageId}
+                              alt=""
+                              className=" object-cover rounded-sm"
+                            />
                           </div>
                         </CardContent>
                       </Card>
@@ -80,8 +93,8 @@ const WhatsOnMind = () => {
               </CarouselContent>
             )}
           </Carousel>
-          </div>
-          <Divider className=" mt-6 mb-8"/>
+        </div>
+        <Divider className=" mt-6 mb-8" />
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 import { Input } from "postcss/lib/input";
 import InputButton from "./InputButton";
+import "../../App.css";
 
 export default function Banner() {
   return (
@@ -16,11 +17,11 @@ export default function Banner() {
             <div class="flex justify-center">
               <img
                 src="https://b.zmtcdn.com/web_assets/8313a97515fcb0447d2d77c276532a511583262271.png"
-                className="h-16"
+                className="h-16 img"
                 alt=""
               />
             </div>
-            <p className="mb-5 text-[20px] mt-2 sm:text-[10px]">
+            <p className="mb-5 text-[20px] mt-2 sm:text-[10px] text">
               Discover the best food & drinks in Delhi NCR
             </p>
             <InputButton />
