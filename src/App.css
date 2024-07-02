@@ -21,7 +21,7 @@
   .searchInputButton{
     width: 120px;
   }
-  .heading{
+  .Bodyheading{
     text-align: center;
     margin-top: 25px;
   }
@@ -39,4 +39,57 @@
     align-items: center;
   }
 
+  /*
+  MENU PAGE
+  */
+
+  .menuHeading{
+    text-align: center;
+  }
+  
+  .menuDiv1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .menuDiv3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .menuDiv2{
+    width: 75vw;
+  }
+  .menuNone{
+    display: none;
+  }
+  .menuImg{
+    width: 120px;
+    height: 90px;
+    /* margin-right: 25px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .menucards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .menuDivBox{
+    width: 100%;
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .accordianMenuDiv{
+    margin-right: 15px;
+    margin-left: 15px;
+  }
 }

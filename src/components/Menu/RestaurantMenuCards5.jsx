@@ -11,40 +11,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../Hook/useRestaurantMenu";
 
 const RestaurantMenuCards5 = () => {
-  const [menu, SetMenu] = useState(null);
-  const [offer, setOffer] = useState([]);
   const { resId } = useParams();
-  
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json();
-    console.log(json.data);
-    SetMenu(json.data);
-    setOffer(
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
-    );
-  };
+  const menu = useRestaurantMenu(resId);
 
   if (menu === null) return <SkeletonRestContainer />;
 
-  const { text } = menu?.cards[0]?.card?.card;
-
-  const {
-    avgRating,
-    totalRatingsString,
-    costForTwoMessage,
-    cuisines,
-    areaName,
-    sla,
-    city,
-    feeDetails,
-  } = menu?.cards[2]?.card?.card?.info;
 
   const { itemCards } =
     menu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[8]?.card?.card ||
@@ -61,26 +35,30 @@ const RestaurantMenuCards5 = () => {
       <div>
         <div>
           <div className="helpHeading flex my-10 flex-col">
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1">
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full menuAccordian"
+            >
+              <AccordionItem value="item-1" className="accordianMenuDiv">
                 <AccordionTrigger className=" hover:no-underline">
                   {title}
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="recomendedCards">
-                    {itemCards.map((item, index) => (
-                      <div className="box" key={index}>
+                  <div className="recomendedCards ">
+                    {itemCards.map((item) => (
+                      <div className="box" key={item.card.info.id}>
                         <div className="menucards flex gap-8 py-7">
-                          <div className="menuHeading flex flex-col w-[400px] gap-2.5">
-                            <p className="text-[12px] font-bold">
+                          <div className="menuHeading flex flex-col w-[400px] gap-2.5 menuDivBox">
+                            <p className="text-[12px] font-bold menuHeading">
                               {item.card.info.itemAttribute.vegClassifier ==
                               "NONVEG" ? (
-                                <GiChickenOven className=" text-red-600 text-[15px]" />
+                                <GiChickenOven className=" text-red-600 text-[15px] menuHeading" />
                               ) : (
-                                <i className="fa-solid fa-leaf text-green-800 text-[15px]"></i>
+                                <i className="fa-solid fa-leaf text-green-800 text-[15px] menuHeading"></i>
                               )}
                             </p>
-                            <h1 className=" text-[16px] font-semibold">
+                            <h1 className=" text-[16px] font-semibold menuHeading">
                               {item.card.info.name}
                             </h1>
                             <div className="flex">
@@ -90,7 +68,7 @@ const RestaurantMenuCards5 = () => {
                                   item.card.info.defaultPrice / 100}
                               </h1>
                             </div>
-                            <h1 className="text-[15px]">
+                            <h1 className="text-[15px] menuHeading">
                               {item.card.info.description}
                             </h1>
                           </div>
@@ -98,8 +76,13 @@ const RestaurantMenuCards5 = () => {
                             <img
                               src={MENU_IMG + item.card.info.imageId}
                               alt=""
-                              className="w-[156px] rounded-xl h-[170px] object-cover"
+                              className="w-[156px] rounded-xl h-[170px] object-cover menuImg"
                             />
+                            <div className="flex justify-center align-middle mt-3">
+                              <button className="border-2 border-red-500 px-10 py-2 text-center text-white bg-red-600 font-semibold text-[15px] rounded-lg">
+                                ADD
+                              </button>
+                            </div>
                           </div>
                         </div>
                         <Divider />
