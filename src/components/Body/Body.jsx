@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useContext } from "react";
 import { useState, useEffect } from "react";
 import RestaurantCard from "../Restaurants/RestaurantCard";
 import { SkeletonCard } from "../Category/SkeletonCard";
@@ -7,10 +7,15 @@ import { Heading } from "./Heading";
 import InputButton from "../Hero/InputButton";
 import Banner from "../Hero/Banner";
 import { Link } from "react-router-dom";
+import { Coordinates } from "../Context/ContextApi";
 
 const Body = () => {
   const [filterRestaurants, setFilterRestaurants] = useState([]);
   const [listOfRest, setListOfRest] = useState([]);
+  const [title, setTitle] = useState("");
+  const {
+    cord: { lat, lng },
+  } = useContext(Coordinates);
 
   const ParentAlert = (data) => {
     setFilterRestaurants(data);
@@ -18,13 +23,16 @@ const Body = () => {
 
   const Fetchres = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7111675&lng=77.0722759&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
     );
     const json = await data.json();
-    console.log(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    console.log(json.data)
+    // console.log(
+    //   json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
+    // console.log(json?.data);
+    // console.log(json.data);
+    const title = json?.data?.cards[2]?.card?.card?.title || "Default Title";
+
 
     setFilterRestaurants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -33,18 +41,21 @@ const Body = () => {
     setListOfRest(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+
+    setTitle(title);
   };
 
   useEffect(() => {
     Fetchres();
-  }, []);
+  }, [lat, lng]);
+
 
   return listOfRest.length === 0 ? (
     <SkeletonRestContainer />
   ) : (
     <div className=" max-w-[1200px] mx-auto">
       <div className="flex flex-col ">
-        <Heading />
+        <Heading title={title} />
         <div className="flex justify-center align-middle">
           <InputButton SearchText={ParentAlert} />
         </div>
@@ -70,7 +81,7 @@ const Body = () => {
             key={restaurant.info.id}
           >
             <RestaurantCard resData={restaurant} key={restaurant.info.id} />
-          </Link> 
+          </Link>
         ))}
       </div>
     </div>

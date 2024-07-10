@@ -62,6 +62,7 @@ const Signup = () => {
           .required("Password is required"),
         profile_pic: Yup.mixed().required("Profile picture is required"),
       });
+      alert("GO To Mail for Confirmation and Login Again")
 
       await schema.validate(formData, {abortEarly: false});
       await fnSignup();
