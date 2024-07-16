@@ -25,7 +25,6 @@ const Search = () => {
   // console.log(restaurant)
   // https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.7007891&lng=77.05926769999999&str=Biryani&trackingId=undefined&submitAction=ENTER&queryUniqueId=f3dd4088-3032-60ad-d3ed-38c7c484735c&selectedPLTab=RESTAURANT
   const [dishes, setdishes] = useState([]);
-  // console.log(dishes);
   // https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.7007891&lng=77.05926769999999&str=Biryani&trackingId=8c788e5c-d590-d037-8286-1a50f8ef3771&submitAction=ENTER&queryUniqueId=f3dd4088-3032-60ad-d3ed-38c7c484735c
   const [inputValue, setInputValue] = useState("");
 
@@ -83,8 +82,6 @@ const Search = () => {
       data?.data?.cards?.[1]?.groupedCard?.cardGroupMap?.DISH?.cards.slice(1)
     );
   };
-
-
 
   useEffect(() => {
     fetchsearchUrl();
