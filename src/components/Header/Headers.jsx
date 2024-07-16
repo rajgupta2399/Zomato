@@ -56,8 +56,9 @@ export default function Headers() {
   const [searchResult, setSearchResult] = useState([]);
   const styleCard = {
     fontFamily: "Poppins",
-    backgroundColor: "#fff",
+    backgroundColor: resolvedTheme === "dark" ? "#1D232A" : "#fff",
     fontSize: "16px",
+    color: resolvedTheme === "dark" ? "#fff" : "#1D232A",
   };
 
   // for borders
@@ -138,7 +139,7 @@ export default function Headers() {
       </div>
 
       <header
-        className=" bg-white font-Poppins font-sans h-[70px] shadow-[0_0px_20px_30px_-10px_rgb(38, 57, 77)] w-full z-20"
+        className=" bg-white font-Poppins font-sans h-[70px] w-full z-20 shadow-lg dark:bg-[#1D232A]"
         style={styleCard}
       >
         <nav
@@ -159,11 +160,14 @@ export default function Headers() {
             <div
               className="flex items-center gap-2 cursor-pointer"
               onClick={() => setVisible(true)}
+              styleCard={styleCard}
             >
-              <p className="font-bold border-b-2 border-black text-black hover:text-orange-500 transition-all delay-100 ease-in-out whitespace-nowrap w-[100px] overflow-hidden text-ellipsis text-center">
+              <p className="font-bold border-b-2 dark:border-white dark:text-white hover:text-orange-500 transition-all delay-100 ease-in-out whitespace-nowrap w-[100px] overflow-hidden text-ellipsis text-center
+              styleCard={styleCard}
+              ">
                 {address}
               </p>
-              <i className="fa-solid fa-angle-down mt-2 text-orange-500 text-lg"></i>
+              <i className="fa-solid fa-angle-down mt- text-lg dark:text-white"></i>
             </div>
           </div>
 
@@ -318,10 +322,10 @@ export default function Headers() {
                 <XMarkIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
-            <div className="mt-6 flow-root">
+            <div className="mt-6 flow-root" style={styleCard}>
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  <Disclosure as="div" className="-mx-3">
+                  <Disclosure as="div" className="-mx-3" style={styleCard}>
                     {({ open }) => (
                       <>
                         <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">

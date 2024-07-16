@@ -73,7 +73,7 @@ const Search = () => {
       return;
     }
     const res = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${query}&trackingId=8c788e5c-d590-d037-8286-1a50f8ef3771&submitAction=ENTER&queryUniqueId=f3dd4088-3032-60ad-d3ed-38c7c484735c`
+      `https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${query}&trackingId=undefined&submitAction=SUGGESTION&queryUniqueId=9b8d4c6f-a64a-1a7f-8827-80feb75510f3&metaData=%7B%22type%22%3A%22DISH%22%2C%22data%22%3A%7B%22vegIdentifier%22%3A%22NA%22%2C%22cloudinaryId%22%3A%22p6hdp5icg4wvcxbeubxz%22%2C%22dishFamilyId%22%3A%22846613%22%2C%22dishFamilyIds%22%3A%5B%22846613%22%5D%7D%2C%22businessCategory%22%3A%22SWIGGY_FOOD%22%2C%22displayLabel%22%3A%22Dish%22%7D`
     );
     const data = await res.json();
     setdishes(
@@ -83,6 +83,8 @@ const Search = () => {
       data?.data?.cards?.[1]?.groupedCard?.cardGroupMap?.DISH?.cards.slice(1)
     );
   };
+
+
 
   useEffect(() => {
     fetchsearchUrl();
