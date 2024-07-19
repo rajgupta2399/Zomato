@@ -16,3 +16,5 @@ List of React UI used in this project
     -- Next UI
     -- Tailwind UI
     -- Headless UI
+
+Authorization : Supabase 
