@@ -11,7 +11,7 @@ const useRestaurantCategory = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7111675&lng=77.0722759&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/restaurants/list/v5?lat=28.7111675&lng=77.0722759&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     console.log(json);
@@ -24,18 +24,21 @@ const useRestaurantCategory = () => {
       json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
     );
 
-    const infoArray = json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info || [];
+    const infoArray =
+      json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info || [];
 
-    const extractedIds = infoArray.map((item) => {
-      const link = item?.action?.link || "";
-      const idMatch = link.match(/id=(\d+)/);
-      return idMatch ? idMatch[1] : null;
-    }).filter(id => id !== null);
+    const extractedIds = infoArray
+      .map((item) => {
+        const link = item?.action?.link || "";
+        const idMatch = link.match(/id=(\d+)/);
+        return idMatch ? idMatch[1] : null;
+      })
+      .filter((id) => id !== null);
 
     setIds(extractedIds);
   };
-  
-  return {category,ids};
+
+  return { category, ids };
 };
 
 export default useRestaurantCategory;

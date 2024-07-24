@@ -3,10 +3,7 @@ import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 
 function InputButton(props) {
-
-
   const { SearchText } = props;
-
 
   const [searchRes, setSearchRes] = useState("");
   const [listOfRest, setListOfRest] = useState([]);
@@ -17,7 +14,7 @@ function InputButton(props) {
 
   const Fetchres = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7111675&lng=77.0722759&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/restaurants/list/v5?lat=28.7111675&lng=77.0722759&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     setListOfRest(

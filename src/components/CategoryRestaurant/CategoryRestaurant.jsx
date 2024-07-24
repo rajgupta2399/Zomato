@@ -19,7 +19,7 @@ const CategoryRestaurant = () => {
   const fetchMenu = async () => {
     try {
       const data = await fetch(
-        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&collection=${resId}&tags=layout_CCS_Pizza&sortBy=&filters=&type=rcv2&offset=0&page_type=null`
+        `https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&collection=${resId}&tags=layout_CCS_Pizza&sortBy=&filters=&type=rcv2&offset=0&page_type=null`
       );
       const json = await data.json();
       setResCatMenu(json?.data);

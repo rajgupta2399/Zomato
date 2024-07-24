@@ -74,7 +74,7 @@ export default function Headers() {
   async function searchResultFunc(e) {
     if (e == "") return;
     const data = await fetch(
-      `https://www.swiggy.com/dapi/misc/place-autocomplete?input=${e}`
+      `https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/misc/place-autocomplete?input=${e}`
     );
     const json = await data.json();
     console.log(json);
@@ -84,7 +84,7 @@ export default function Headers() {
   async function fetchLangAndLong(id) {
     if (id == "") return;
     const data = await fetch(
-      `https://www.swiggy.com/dapi/misc/address-recommend?place_id=${id}`
+      `https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/misc/address-recommend?place_id=${id}`
     );
     const json = await data.json();
     setCord({
@@ -162,9 +162,11 @@ export default function Headers() {
               onClick={() => setVisible(true)}
               styleCard={styleCard}
             >
-              <p className="font-bold border-b-2 dark:border-white dark:text-white hover:text-orange-500 transition-all delay-100 ease-in-out whitespace-nowrap w-[100px] overflow-hidden text-ellipsis text-center
+              <p
+                className="font-bold border-b-2 dark:border-white dark:text-white hover:text-orange-500 transition-all delay-100 ease-in-out whitespace-nowrap w-[100px] overflow-hidden text-ellipsis text-center
               styleCard={styleCard}
-              ">
+              "
+              >
                 {address}
               </p>
               <i className="fa-solid fa-angle-down mt- text-lg dark:text-white"></i>
