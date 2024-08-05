@@ -19,7 +19,7 @@ const useRestaurantsChains = () => {
 
     let mainData2 = json?.data?.cards.find(
       (data) => data?.card?.card?.id === "restaurant_grid_listing"
-    )?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    )?.card?.card?.gridElements?.infoWithStyle?.restaurants.slice(2);
 
     // console.log(mainData, mainData2);
 

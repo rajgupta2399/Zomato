@@ -13,7 +13,7 @@ import { Coordinates } from "../Context/ContextApi";
 import RestaurantChainCarousel from "../RestaurantChains/RestaurantChainCarousel";
 import { Heading1 } from "./Heading1";
 import useRestaurantsChains from "../Hook/useRestaurantsChains";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 const Body = () => {
   const isLargeScreen = useMediaQuery({ minWidth: 550 });
@@ -62,13 +62,11 @@ const Body = () => {
     <SkeletonRestContainer />
   ) : (
     <div className="max-w-[1200px] mx-auto">
-    {isLargeScreen && (
-      <div className="flex flex-col">
+      <div className="flex flex-col sm:px-0 px-6">
         <Heading title={title} />
         <RestaurantChainCarousel />
       </div>
-    )}
-    
+
       <div className=" flex flex-col sm:flex-row justify-between items-center mb-4 p-4">
         <Heading1 title={title} />
         <button

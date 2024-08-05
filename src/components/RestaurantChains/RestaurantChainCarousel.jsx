@@ -35,9 +35,9 @@ const RestaurantChainCarousel = () => {
     };
   }, []);
   const { listOfRest1 } = useRestaurantsChains();
-  if (isSmallScreen) {
-    return null;
-  }
+  // if (isSmallScreen) {
+  //   return null;
+  // }
 
   return listOfRest1.length === 0 ? (
     <div className=" mb-10 mt-0">
@@ -45,17 +45,17 @@ const RestaurantChainCarousel = () => {
     </div>
   ) : (
     <>
-      <div className="max-w-[1230px] mx-auto mt-1 small mb-10">
-        <div className="carousel">
+      <div className="sm:max-w-[1230px] mx-auto mt-1 small mb-10 w-full">
+        <div className="">
           <Carousel
-            className="border-none max-w-[1230px]"
+            className="border-none max-w-[1230px] w-full  "
             opts={{
               align: "start",
               loop: true,
               items: {
                 visible: {
-                  min: 10,
-                  max: 20,
+                  min: 1,
+                  max: 1,
                 },
               },
             }}
@@ -67,7 +67,7 @@ const RestaurantChainCarousel = () => {
                   key={index}
                   className="pl-1 sm:basis-[1%] md:basis-[5%] lg:basis-[309px]"
                 >
-                  <Card className="cursor-pointer h-[364px] ml-5 rounded-2xl">
+                  <Card className="cursor-pointer h-[364px] ml-5 rounded-2xl flex justify-center bg-[#1D232A] border-none">
                     <Link
                       to={"/restaurants/" + restaurant.info.id}
                       key={restaurant.info.id}
@@ -81,10 +81,10 @@ const RestaurantChainCarousel = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 p-2 bg-gray-700 text-white rounded-full cursor-pointer">
+            <CarouselPrevious className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 p-2 bg-gray-700 text-white rounded-full cursor-pointer ml-2">
               &#x2039;
             </CarouselPrevious>
-            <CarouselNext className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 p-2 bg-gray-700 text-white rounded-full cursor-pointer">
+            <CarouselNext className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 p-2 bg-gray-700 text-white rounded-full cursor-pointer ">
               &#x203A;
             </CarouselNext>
           </Carousel>

@@ -54,7 +54,7 @@ export const appRouter = createBrowserRouter([
         path: "/",
         element: (
           <RequireAuth>
-            <Home />,
+            <Home />
           </RequireAuth>
         ),
       },
