@@ -34,7 +34,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Heart, LinkIcon, LogOut } from "lucide-react";
+import { Divide, Heart, LinkIcon, LogOut } from "lucide-react";
 import { UrlState } from "@/Context.jsx";
 import useFetch from "../Hook/useFetchHook.jsx";
 import { logout } from "@/db/apiAuth.js";
@@ -43,6 +43,7 @@ import useOnlineStatus from "../Hook/useOnlineStatus.jsx";
 import { Sidebar } from "primereact/sidebar";
 import InputButton from "../Hero/InputButton.jsx";
 import { Coordinates } from "../Context/ContextApi.js";
+import { Divider } from "@nextui-org/divider";
 // import { Button } from "primereact/button";
 
 function classNames(...classes) {
@@ -93,8 +94,6 @@ export default function Headers() {
     });
     setAddress(json.data[0].formatted_address);
     setVisible(false);
-    // console.log(json.data[0].geometry.location.lat);
-    // console.log(json.data[0].geometry.location.lng);
   }
 
   return (
@@ -103,7 +102,7 @@ export default function Headers() {
         <Sidebar
           visible={visible}
           onHide={() => setVisible(false)}
-          className="w-[37%] dark:bg-[#1D232A]"
+          className="sm:w-full w-[90%] md:w-[60%] lg:w-[37%] dark:bg-[#1D232A]"
         >
           <h2 className="text-center my-2 dark:text-white">
             Search Area & Streets
@@ -112,13 +111,13 @@ export default function Headers() {
             <Input
               type="email"
               placeholder="Search For Area"
-              className="outline-none w-1/2 focus:outline-none dark:text-white block"
+              className=" w-full outline-none lg:w-[1/2] focus:outline-none dark:text-white block "
               name="input"
               id="input"
               onChange={(e) => searchResultFunc(e.target.value)}
             />
           </div>
-          <div className="flex justify-center align-middle my-5">
+          <div className="flex justify-center align-middle my-5 mx-4">
             <ul>
               {searchResult.map((data, index) => (
                 <li
@@ -128,9 +127,10 @@ export default function Headers() {
                 >
                   <i className="fa-solid fa-location-dot mr-2 dark:text-white"></i>
                   {data.structured_formatting.main_text}{" "}
-                  <p className="text-sm opacity-60 dark:text-white">
+                  <p className="text-sm opacity-60 dark:text-white mb-3">
                     {data.structured_formatting.secondary_text}
                   </p>
+                  <Divider />
                 </li>
               ))}
             </ul>
@@ -306,15 +306,18 @@ export default function Headers() {
           onClose={setMobileMenuOpen}
         >
           <div className="fixed inset-0 z-10" />
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <Dialog.Panel
+            className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+            style={styleCard}
+          >
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <Link className="-m-1.5 p-1.5" to="/">
                 <img
                   className="h-14 w-auto"
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Zomato_Logo.png/1200px-Zomato_Logo.png?20201120190035"
                   alt=""
                 />
-              </a>
+              </Link>
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -330,39 +333,58 @@ export default function Headers() {
                   <Disclosure as="div" className="-mx-3" style={styleCard}>
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                          Product
+                        <Disclosure.Button
+                          className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          style={styleCard}
+                        >
+                          <Link to="/">Home</Link>
                         </Disclosure.Button>
                       </>
                     )}
                   </Disclosure>
-                  <a
-                    href="#"
+
+                  <Link
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    to="/Search"
+                    style={styleCard}
                   >
                     Search
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  {/** 
+                  <Link
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    to="/About"
+                    style={styleCard}
                   >
                     Offers
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  */}
+                  <Link
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    to="/Contact"
+                    style={styleCard}
                   >
                     Help
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  <Link
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    to="/Contact"
+                    style={styleCard}
                   >
-                    Log in
-                  </a>
+                    <span
+                      onClick={() => {
+                        fnLogout().then(() => {
+                          fetchUser();
+                          navigate("/auth");
+                        });
+                      }}
+                    >
+                      LogOut
+                    </span>
+                  </Link>
                 </div>
               </div>
             </div>

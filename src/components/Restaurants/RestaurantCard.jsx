@@ -19,7 +19,7 @@ const RestaurantCard = (props) => {
   return (
     <div>
       <div className="restaurantContainer mb-10 flex gap-5 flex-wrap flex-row">
-        <Card className="py-4 w-[285px]  dark:bg-[#1D232A] cursor-pointer">
+        <Card className="py-4 w-full sm:w-[285px] dark:bg-[#1D232A] cursor-pointer">
           <CardBody className="overflow-visible py-2">
             <Image
               alt="Card background"

@@ -90,13 +90,15 @@ const RestaurantMenu = () => {
             <h1 className=" text-[25px] font-semibold menuHeading">{text}</h1>
           </div>
 
+          {/**Rest Info */}
+
           <div className="resInfo my-3 menuDiv1">
-            <div className="resInfoContainer border-2 border-black h-[160px] w-[40vw] py-[16px] px-5 rounded-xl dark:border-white menuDiv2">
+            <div className="resInfoContainer border-2 border-black sm:h-[160px] h-full w-[40vw] py-[16px] px-5 rounded-xl dark:border-white menuDiv2 ">
               <div className="rating flex flex-col my-2 menuDiv3">
                 <div className="flex flex-row gap-1 menuDiv4">
                   <MdStars className=" text-[#1E943B] text-[20px]" />
                   <p className=" text-[14px] capitalized font-semibold flex flex-row gap-1">
-                    {avgRating}
+                    {avgRating ? avgRating : "4.4"}
                     <div></div>({totalRatingsString}) <div></div>{" "}
                     {costForTwoMessage}
                   </p>
@@ -129,6 +131,7 @@ const RestaurantMenu = () => {
             </div>
           </div>
 
+          {/**Deals For You Discount Chain */}
           <div className="offerCarousel  mt-6 menuNone">
             <div className="offerheading my-2">
               <h1 className=" font-semibold text-[20px] my-2 menuHeading">
@@ -216,8 +219,8 @@ const RestaurantMenu = () => {
                         {itemCards.map(({ card: { info } }) => (
                           <AccordionContent key={info.id}>
                             <div className="box">
-                              <div className="menucards flex gap-8 py-7">
-                                <div className="menuHeading flex flex-col w-[400px] gap-2.5 menuDivBox">
+                              <div className="menucards flex gap-8 py-7 px-3">
+                                <div className="menuHeading flex flex-col w-[400px] gap-2.5 menuDivBox ">
                                   <p className="text-[12px] font-bold menuHeading">
                                     {info.itemAttribute.vegClassifier ===
                                     "NONVEG" ? (
@@ -247,7 +250,7 @@ const RestaurantMenu = () => {
                                     className="w-[156px] rounded-xl h-[170px] object-cover menuImg"
                                   />
                                   <div className="flex justify-center align-middle mt-3">
-                                    <button className="border-2 border-red-500 px-10 py-2 text-center text-white bg-red-600 font-semibold text-[15px] rounded-lg absolute top-36">
+                                    <button className="border-2 border-red-500 px-6 py-2 text-center text-white bg-red-600 font-semibold text-[12px] rounded-lg absolute sm:top-36 top-18 sm:text-[15px] sm:px-10 sm:py-2">
                                       ADD
                                     </button>
                                   </div>

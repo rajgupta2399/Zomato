@@ -21,13 +21,13 @@ const Auth = () => {
 
   return (
     <div className="flex justify-center align-middle my-[75px]">
-      <div>
-        <h1 className="text-5xl font-semibold text-center my-5">
+      <div className="">
+        <h1 className="text-2xl font-semibold text-center my-5">
           {searchParams.get("createNew")
             ? "Hold Up..!! Let's Login First"
             : "Login / Signup"}
         </h1>
-        <Tabs defaultValue="login" className="w-[400px]">
+        <Tabs defaultValue="login" className="w-[320px] sm:w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="login">Login</TabsTrigger>
             <TabsTrigger value="signup">Signup</TabsTrigger>

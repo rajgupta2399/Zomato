@@ -61,7 +61,7 @@ const Body = () => {
   return listOfRest.length === 0 ? (
     <SkeletonRestContainer />
   ) : (
-    <div className=" max-w-[1200px] mx-auto">
+    <div className="max-w-[1200px] mx-auto">
     {isLargeScreen && (
       <div className="flex flex-col">
         <Heading title={title} />
@@ -69,7 +69,7 @@ const Body = () => {
       </div>
     )}
     
-      <div className="flex justify-between items-center mb-4">
+      <div className=" flex flex-col sm:flex-row justify-between items-center mb-4 p-4">
         <Heading1 title={title} />
         <button
           className="px-3 py-2 bg-red-500 rounded-xl"
@@ -85,7 +85,7 @@ const Body = () => {
           Top Rated Restaurant
         </button>
       </div>
-      <div className="flex gap-5 flex-wrap flex-row restCards">
+      <div className="flex gap-5 flex-wrap flex-row   justify-center">
         {filterRestaurants.map((restaurant, index) => (
           <Link
             to={"/restaurants/" + restaurant.info.id}

@@ -16,8 +16,10 @@ import { Link } from "react-router-dom";
 import RestaurantCard from "../Restaurants/RestaurantCard";
 import SearchRestaurantCard from "./SearchRestaurantCard";
 import SearchDishes from "./SearchDishes";
+import { useMediaQuery } from "react-responsive";
 
 const Search = () => {
+  const isLargeScreen = useMediaQuery({ minWidth: 550 });
   const [searchCarousel, setSearchCarousel] = useState([]);
   const [selectedEntity, setSelectedEntity] = useState(null);
   const [selectedCarousel, setSelectedCarousel] = useState([]);
@@ -124,11 +126,11 @@ const Search = () => {
   return (
     <div>
       <div>
-        <div className="searchDiv flex justify-center align-middle my-8 gap-5">
+        <div className="flex justify-center align-middle my-8 gap-5">
           <Input
             type="text"
             placeholder="Search For Dishes And Restuarants"
-            className="outline-none w-1/2 focus:outline-none dark:text-white block w-1/3"
+            className="outline-none w-1/2 focus:outline-none dark:text-white block"
             name="input"
             id="input"
             value={inputValue}
@@ -136,57 +138,59 @@ const Search = () => {
           />
           <button
             onClick={handleSearch}
-            className="border-2 border-red-700 py-1 px-7 bg-[#d00000] hover:bg-transparent light:bg-white rounded-lg topRatedButton"
+            className="border-2 border-red-700 py-1 px-7 bg-[#d00000] hover:bg-transparent light:bg-white rounded-lg "
           >
             Search
           </button>
         </div>
 
-        <div className="carousel flex justify-center align-middle">
-          <Carousel
-            className="border-none max-w-[1200px]"
-            opts={{
-              align: "start",
-              loop: true,
-              items: {
-                visible: {
-                  min: 10,
-                  max: 12,
+        {isLargeScreen && (
+          <div className="carousel flex justify-center align-middle">
+            <Carousel
+              className="border-none max-w-[1200px]"
+              opts={{
+                align: "start",
+                loop: true,
+                items: {
+                  visible: {
+                    min: 10,
+                    max: 12,
+                  },
                 },
-              },
-            }}
-            plugins={[Autoplay({ delay: 3000 })]}
-          >
-            {searchCarousel && (
-              <CarouselContent className="-ml-1">
-                {searchCarousel.map((item, index) => (
-                  <CarouselItem
-                    key={index}
-                    className="pl-1 sm:basis-[1%] md:basis-[5%] lg:basis-[10%] "
-                  >
-                    <div className="p-1 ml-4">
-                      <Card
-                        className="cursor-pointer"
-                        onClick={() => handleImageClick(item.entityId)}
-                        // onClick={() => handleClick(ids[index])}
-                      >
-                        <CardContent className="flex items-center justify-center p-1">
-                          <div height="50" width="50" className="">
-                            <img
-                              src={SEARCH_IMG + item.imageId}
-                              alt=""
-                              className="object-cover rounded-sm"
-                            />
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            )}
-          </Carousel>
-        </div>
+              }}
+              plugins={[Autoplay({ delay: 3000 })]}
+            >
+              {searchCarousel && (
+                <CarouselContent className="-ml-1">
+                  {searchCarousel.map((item, index) => (
+                    <CarouselItem
+                      key={index}
+                      className="pl-1 sm:basis-[10%] md:basis-[5%] lg:basis-[10%] "
+                    >
+                      <div className="p-1 ml-4">
+                        <Card
+                          className="cursor-pointer"
+                          onClick={() => handleImageClick(item.entityId)}
+                          // onClick={() => handleClick(ids[index])}
+                        >
+                          <CardContent className="flex items-center justify-center p-1">
+                            <div height="50" width="50" className="">
+                              <img
+                                src={SEARCH_IMG + item.imageId}
+                                alt=""
+                                className="object-cover rounded-sm"
+                              />
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              )}
+            </Carousel>
+          </div>
+        )}
 
         {restaurant.length > 0 && (
           <div className="my-7 flex flex-wrap gap-3 justify-center align-middle">

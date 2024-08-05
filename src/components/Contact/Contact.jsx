@@ -11,7 +11,7 @@ const Contact = () => {
     <React.Fragment>
       <div>
         <div className="flex justify-center align-middle my-[3vw]">
-          <h1 className=" text-[2vw] capitalize font-semibold ">
+          <h1 className=" text-[4vw] capitalize font-semibold text-red-700 sm:text-[2vw]">
             Help & Support
           </h1>
         </div>

@@ -14,7 +14,7 @@ export function SkeletonRest() {
 
 export function SkeletonRestContainer(){
   return(
-    <div className="flex flex-row flex-wrap max-w-[1200px] mx-auto gap-6 mt-20">
+    <div className="flex flex-row flex-wrap justify-center max-w-[1200px] mx-auto gap-6 mt-20">
     {[...Array(20)].map((_, index) => (
       <SkeletonRest key={index} />
     ))}
