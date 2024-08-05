@@ -12,43 +12,34 @@ import {
 } from "@/components/ui/carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import NewSkeleton from "../Category/NewSkeleton";
 import { Coordinates } from "../Context/ContextApi";
 import { Link } from "react-router-dom";
 import RestaurantCard from "../Restaurants/RestaurantCard";
 import { Divider } from "@nextui-org/divider";
+import NewSkeleton from "./NewSkeleton";
+import useRestaurantsChains from "../Hook/useRestaurantsChains";
 
 const RestaurantChainCarousel = () => {
-  const isMobile = useMediaQuery("(min-width: 100px) and (max-width: 600px)");
-  const [listOfRest, setListOfRest] = useState([]);
-  if (isMobile) {
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 550);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 550);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  const { listOfRest1 } = useRestaurantsChains();
+  if (isSmallScreen) {
     return null;
   }
 
-  const {
-    cord: { lat, lng },
-  } = useContext(Coordinates);
-
-  const Fetchres = async () => {
-    const data = await fetch(
-      `https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
-    );
-    const json = await data.json();
-    console.log(json.data);
-
-    const slice =
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants.slice(
-        9,
-        20
-      );
-    setListOfRest(slice);
-  };
-
-  useEffect(() => {
-    Fetchres();
-  }, [lat, lng]);
-
-  return listOfRest.length === 0 ? (
+  return listOfRest1.length === 0 ? (
     <div className=" mb-10 mt-0">
       <NewSkeleton />
     </div>
@@ -71,7 +62,7 @@ const RestaurantChainCarousel = () => {
             plugins={[Autoplay({ delay: 10000 })]}
           >
             <CarouselContent className="py-5">
-              {listOfRest.slice(0, 20).map((restaurant, index) => (
+              {listOfRest1.map((restaurant, index) => (
                 <CarouselItem
                   key={index}
                   className="pl-1 sm:basis-[1%] md:basis-[5%] lg:basis-[309px]"

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import WhatsOnMind from "../Category/WhatsOnMind";
 
 const useRestaurantCategory = () => {
   const [category, setCategory] = useState([]);
@@ -14,18 +15,21 @@ const useRestaurantCategory = () => {
       "https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/restaurants/list/v5?lat=28.7111675&lng=77.0722759&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(json);
-    console.log(
-      json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
-    );
-    console.log(json?.data);
+    // console.log(json);
+    // console.log(
+    //   json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
+    // );
 
-    setCategory(
-      json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
-    );
+    let WhatsOnMindData = json?.data?.cards.find(
+      (data) => data?.card?.card?.id === "whats_on_your_mind"
+    )?.card?.card?.gridElements?.infoWithStyle?.info;
+
+    setCategory(WhatsOnMindData);
 
     const infoArray =
-      json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info || [];
+      json?.data?.cards.find(
+        (data) => data?.card?.card?.id === "whats_on_your_mind"
+      )?.card?.card?.gridElements?.infoWithStyle?.info || [];
 
     const extractedIds = infoArray
       .map((item) => {

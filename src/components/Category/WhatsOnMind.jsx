@@ -20,7 +20,20 @@ import useRestaurantCategory from "../Hook/useRestaurantCategory";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const WhatsOnMind = () => {
-  const isMobile = useMediaQuery("(min-width: 100px) and (max-width: 600px)");
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 550);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 550);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const { user } = UrlState();
   const { category, ids } = useRestaurantCategory(); // Destructure ids from the hook
   const navigate = useNavigate(); // Initialize useNavigate
@@ -29,9 +42,8 @@ const WhatsOnMind = () => {
     console.log(id); // Log the id
     navigate(`/category/${id}`); // Navigate to the category page with the id
   };
-
-  if (isMobile) {
-    return null;
+  if (isSmallScreen) {
+    return null; // Return null if the screen size is 550px or less
   }
 
   return category.length === 0 ? (

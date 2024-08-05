@@ -73,12 +73,12 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-    },
+    },  
   },
   darkMode: "class",
   plugins: [
     require("tailwindcss-animate"),
-    require('daisyui'),
+    require("daisyui"),
     nextui({
       prefix: "nextui", // prefix for themes variables
       addCommonColors: false, // override common colors (e.g. "blue", "green", "pink").
@@ -93,18 +93,18 @@ module.exports = {
         dark: {
           layout: {}, // dark theme layout tokens
           colors: {
-            background:"#1D232A",
-            foreground:"#ffffff"
+            background: "#1D232A",
+            foreground: "#ffffff",
           }, // dark theme colors
         },
-        modern:{
-          layout:{},
-          colors:{
+        modern: {
+          layout: {},
+          colors: {
             background: "#F7B750",
             foreground: "#F7B750",
             focus: "#F182F6",
           },
-        }
+        },
         // ... custom themes
       },
     }),

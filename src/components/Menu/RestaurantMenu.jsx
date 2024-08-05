@@ -26,11 +26,11 @@ import useRestaurantMenu from "../Hook/useRestaurantMenu";
 import { useState, useEffect } from "react";
 import useRestaurantOffer from "../Hook/useRestaurantOffer";
 
-
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const offer = useRestaurantOffer(resId);
   const [menuData, setMenuData] = useState([]);
+  const [restMenuInfo, setRestMenuinfo] = useState([]);
   const [menu, setMenu] = useState([]);
   const [loadingMenu, setLoadingMenu] = useState(true);
   const [loadingOffer, setLoadingOffer] = useState(true);
@@ -39,11 +39,19 @@ const RestaurantMenu = () => {
     try {
       const data = await fetch(MENU_API + resId);
       const res = await data.json();
-      let actualMenu =
-        (res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards).filter(
-          (data) => data?.card?.card?.itemCards
+      let actualMenu = res?.data?.cards
+        .find((data) => data?.groupedCard)
+        ?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+          (data) => data?.card?.card?.itemCards || data?.card?.card?.categories
         );
       setMenuData(actualMenu);
+      let actualMenu1 = res?.data?.cards.find(
+        (data) =>
+          data?.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.Restaurant"
+      )?.card?.card.info;
+      setRestMenuinfo(actualMenu1);
+
       setMenu(res.data);
     } catch (error) {
       console.error("Error fetching menu data:", error);
@@ -59,7 +67,6 @@ const RestaurantMenu = () => {
     }
   }, [offer]);
 
-  const restaurantInfo = menu?.cards?.[2]?.card?.card?.info || {};
   const {
     avgRating,
     totalRatingsString,
@@ -69,7 +76,7 @@ const RestaurantMenu = () => {
     sla = {},
     city,
     feeDetails = {},
-  } = restaurantInfo;
+  } = restMenuInfo;
 
   const text = menu?.cards?.[0]?.card?.card?.text || "Restaurant Menu";
 
@@ -188,13 +195,12 @@ const RestaurantMenu = () => {
 
           <div className="recomendation">
             <div className="helpHeading flex my-10 flex-col">
-              {menuData.map(
-                ({
-                  card: {
-                    card: { itemCards, title },
-                  },
-                }) => (
-                  <div className="helpHeading flex my-5 flex-col">
+              {menuData.map((menuItem) => {
+                const itemCards = menuItem?.card?.card?.itemCards || [];
+                const title = menuItem?.card?.card?.title || "";
+
+                return (
+                  <div className="helpHeading flex my-5 flex-col" key={title}>
                     <Accordion
                       type="single"
                       collapsible
@@ -208,12 +214,12 @@ const RestaurantMenu = () => {
                           {title} ({itemCards.length})
                         </AccordionTrigger>
                         {itemCards.map(({ card: { info } }) => (
-                          <AccordionContent>
-                            <div className="box" key={info.id}>
+                          <AccordionContent key={info.id}>
+                            <div className="box">
                               <div className="menucards flex gap-8 py-7">
                                 <div className="menuHeading flex flex-col w-[400px] gap-2.5 menuDivBox">
                                   <p className="text-[12px] font-bold menuHeading">
-                                    {info.itemAttribute.vegClassifier ==
+                                    {info.itemAttribute.vegClassifier ===
                                     "NONVEG" ? (
                                       <GiChickenOven className=" text-red-600 text-[15px] menuHeading" />
                                     ) : (
@@ -254,8 +260,8 @@ const RestaurantMenu = () => {
                       </AccordionItem>
                     </Accordion>
                   </div>
-                )
-              )}
+                );
+              })}
             </div>
           </div>
         </div>

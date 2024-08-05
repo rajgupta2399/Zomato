@@ -6,8 +6,15 @@ const RestaurantCard = (props) => {
   const { resData } = props;
   // console.log(resData)
 
-  const { cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla ,locality} =
-    resData?.info;
+  const {
+    cloudinaryImageId,
+    name,
+    avgRating,
+    cuisines,
+    costForTwo,
+    sla,
+    locality,
+  } = resData?.info;
 
   return (
     <div>
@@ -22,7 +29,9 @@ const RestaurantCard = (props) => {
             />
           </CardBody>
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-            <p className="text-[18px] capitalize font-semibold text-ellipsis whitespace-nowrap overflow-hidden w-[250px]">{name}</p>
+            <p className="text-[18px] capitalize font-semibold text-ellipsis whitespace-nowrap overflow-hidden w-[250px]">
+              {name}
+            </p>
 
             <div className="flex flex-row gap-3 py-[5px]">
               <div className="flex flex-row gap-1">
@@ -45,6 +54,21 @@ const RestaurantCard = (props) => {
       </div>
     </div>
   );
+};
+
+export const WithPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    const { resData } = props;
+    const { aggregatedDiscountInfoV3 } = resData?.info;
+    return (
+      <div className=" relative">
+        <label className=" font-bold text-lg text-white flex justify-center align-middle mt-10">
+          {aggregatedDiscountInfoV3.header + aggregatedDiscountInfoV3.subHeader}
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
 };
 
 export default RestaurantCard;

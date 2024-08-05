@@ -9,11 +9,12 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 Css Framework
-    -- Tailwind
+    -- Tailwind Css
 
 List of React UI used in this project
     -- Shadcn UI
     -- Next UI
+    -- Daisy UI
     -- Tailwind UI
     -- Headless UI
 

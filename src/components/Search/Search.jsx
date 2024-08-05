@@ -22,10 +22,8 @@ const Search = () => {
   const [selectedEntity, setSelectedEntity] = useState(null);
   const [selectedCarousel, setSelectedCarousel] = useState([]);
   const [restaurant, setRestaurant] = useState([]);
-  // console.log(restaurant)
-  // https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.7007891&lng=77.05926769999999&str=Biryani&trackingId=undefined&submitAction=ENTER&queryUniqueId=f3dd4088-3032-60ad-d3ed-38c7c484735c&selectedPLTab=RESTAURANT
+
   const [dishes, setdishes] = useState([]);
-  // https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.7007891&lng=77.05926769999999&str=Biryani&trackingId=8c788e5c-d590-d037-8286-1a50f8ef3771&submitAction=ENTER&queryUniqueId=f3dd4088-3032-60ad-d3ed-38c7c484735c
   const [inputValue, setInputValue] = useState("");
 
   const filterOptions = ["Restaurant", "Dishes"];
@@ -44,9 +42,13 @@ const Search = () => {
       `https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/landing/PRE_SEARCH?lat=${lat}&lng=${lng}`
     );
     const data = await res.json();
-    setSearchCarousel(
-      data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.info
-    );
+
+    let actualSearch = data?.data?.cards.find(
+      (data) =>
+        data?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget"
+    )?.card?.card?.gridElements?.infoWithStyle?.info;
+    setSearchCarousel(actualSearch);
   };
 
   const fetchRestaurant = async (query) => {
@@ -60,10 +62,11 @@ const Search = () => {
       }&trackingId=undefined&submitAction=ENTER&queryUniqueId=f3dd4088-3032-60ad-d3ed-38c7c484735c&selectedPLTab=RESTAURANT`
     );
     const data = await res.json();
-    setRestaurant(
-      data?.data?.cards?.[0]?.groupedCard?.cardGroupMap?.RESTAURANT?.cards
-    );
-    console.log(data.data);
+
+    let actualSearch = data?.data?.cards.find((data) => data?.groupedCard)
+      ?.groupedCard?.cardGroupMap?.RESTAURANT?.cards;
+
+    setRestaurant(actualSearch);
   };
 
   const fetchDishes = async (query) => {
@@ -75,12 +78,11 @@ const Search = () => {
       `https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${query}&trackingId=undefined&submitAction=SUGGESTION&queryUniqueId=9b8d4c6f-a64a-1a7f-8827-80feb75510f3&metaData=%7B%22type%22%3A%22DISH%22%2C%22data%22%3A%7B%22vegIdentifier%22%3A%22NA%22%2C%22cloudinaryId%22%3A%22p6hdp5icg4wvcxbeubxz%22%2C%22dishFamilyId%22%3A%22846613%22%2C%22dishFamilyIds%22%3A%5B%22846613%22%5D%7D%2C%22businessCategory%22%3A%22SWIGGY_FOOD%22%2C%22displayLabel%22%3A%22Dish%22%7D`
     );
     const data = await res.json();
-    setdishes(
-      data?.data?.cards?.[1]?.groupedCard?.cardGroupMap?.DISH?.cards.slice(1)
-    );
-    console.log(
-      data?.data?.cards?.[1]?.groupedCard?.cardGroupMap?.DISH?.cards.slice(1)
-    );
+    let actualDish = data?.data?.cards
+      .find((data) => data?.groupedCard)
+      ?.groupedCard?.cardGroupMap?.DISH?.cards.slice(1);
+
+    setdishes(actualDish);
   };
 
   useEffect(() => {
@@ -208,7 +210,7 @@ const Search = () => {
           <div className="flex gap-5 flex-wrap flex-row restCards">
             {activeBtn === "Dishes"
               ? dishes.map((item, index) => (
-                  <div>
+                  <div key={index}>
                     <Link
                       to={"/restaurants/" + item.card.card.restaurant.info.id}
                       key={item.card.card.restaurant.info.id}
@@ -221,7 +223,7 @@ const Search = () => {
                   </div>
                 ))
               : restaurant.map((item, index) => (
-                  <div>
+                  <div key={index}>
                     <Link
                       to={"/restaurants/" + item.card.card.info.id}
                       key={item.card.card.info.id}
