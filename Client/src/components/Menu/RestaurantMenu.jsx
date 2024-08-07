@@ -25,6 +25,7 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../Hook/useRestaurantMenu";
 import { useState, useEffect } from "react";
 import useRestaurantOffer from "../Hook/useRestaurantOffer";
+import MenuItem from "./MenuItem";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -34,6 +35,7 @@ const RestaurantMenu = () => {
   const [menu, setMenu] = useState([]);
   const [loadingMenu, setLoadingMenu] = useState(true);
   const [loadingOffer, setLoadingOffer] = useState(true);
+  const [detail, setDetail] = useState([]);
 
   const fetchMenu = async () => {
     try {
@@ -45,6 +47,13 @@ const RestaurantMenu = () => {
           (data) => data?.card?.card?.itemCards || data?.card?.card?.categories
         );
       setMenuData(actualMenu);
+      let a = res?.data?.cards
+        .find((data) => data?.groupedCard)
+        ?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+          (data) => data?.card?.card?.itemCards
+        );
+
+      setDetail(a);
       let actualMenu1 = res?.data?.cards.find(
         (data) =>
           data?.card?.card?.["@type"] ===
@@ -81,6 +90,10 @@ const RestaurantMenu = () => {
   const text = menu?.cards?.[0]?.card?.card?.text || "Restaurant Menu";
 
   if (loadingMenu || loadingOffer) return <SkeletonRestContainer />;
+
+  const { name, defaultPrice, price } = detail;
+
+  const handleAddToCart = (name, price) => {};
 
   return (
     <div>
@@ -203,65 +216,8 @@ const RestaurantMenu = () => {
                 const title = menuItem?.card?.card?.title || "";
 
                 return (
-                  <div className="helpHeading flex my-5 flex-col" key={title}>
-                    <Accordion
-                      type="single"
-                      collapsible
-                      className="w-full menuAccordian"
-                    >
-                      <AccordionItem
-                        value="item-1"
-                        className="accordianMenuDiv"
-                      >
-                        <AccordionTrigger className=" hover:no-underline">
-                          {title} ({itemCards.length})
-                        </AccordionTrigger>
-                        {itemCards.map(({ card: { info } }) => (
-                          <AccordionContent key={info.id}>
-                            <div className="box">
-                              <div className="menucards flex gap-8 py-7 px-3">
-                                <div className="menuHeading flex flex-col w-[400px] gap-2.5 menuDivBox ">
-                                  <p className="text-[12px] font-bold menuHeading">
-                                    {info.itemAttribute.vegClassifier ===
-                                    "NONVEG" ? (
-                                      <GiChickenOven className=" text-red-600 text-[15px] menuHeading" />
-                                    ) : (
-                                      <i className="fa-solid fa-leaf text-green-800 text-[15px] menuHeading"></i>
-                                    )}
-                                  </p>
-                                  <h1 className=" text-[16px] font-semibold menuHeading">
-                                    {info.name}
-                                  </h1>
-                                  <div className="flex">
-                                    <MdCurrencyRupee className=" my-0.5 text-[16px] font-semibold" />
-                                    <h1 className="text-[16px] font-bold">
-                                      {info.price / 100 ||
-                                        info.defaultPrice / 100}
-                                    </h1>
-                                  </div>
-                                  <h1 className="text-[15px] menuHeading">
-                                    {info.description}
-                                  </h1>
-                                </div>
-                                <div className="menuImg relative">
-                                  <img
-                                    src={MENU_IMG + info.imageId}
-                                    alt=""
-                                    className="w-[156px] rounded-xl h-[170px] object-cover menuImg"
-                                  />
-                                  <div className="flex justify-center align-middle mt-3">
-                                    <button className="border-2 border-red-500 px-6 py-2 text-center text-white bg-red-600 font-semibold text-[12px] rounded-lg absolute sm:top-36 top-18 sm:text-[15px] sm:px-10 sm:py-2">
-                                      ADD
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                              <Divider />
-                            </div>
-                          </AccordionContent>
-                        ))}
-                      </AccordionItem>
-                    </Accordion>
+                  <div>
+                    <MenuItem itemCards={itemCards} title={title} restMenuInfo={restMenuInfo} key={title} />
                   </div>
                 );
               })}

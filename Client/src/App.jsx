@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import "./App.css";
 import Headers from "./components/Header/Headers";
 // import About from "./components/About/About";
@@ -22,6 +22,13 @@ import "primeicons/primeicons.css";
 import { useState } from "react";
 import { Coordinates } from "./components/Context/ContextApi";
 import Search from "./components/Search/Search";
+import { CardContent } from "./components/ui/card";
+import { CardContext } from "./components/Context/ContextApi";
+import { Provider } from "react-redux";
+import store from "./components/Utils/Store/store";
+import { Toaster } from "react-hot-toast";
+import Succes from "./components/Payment/Succes";
+import Cancel from "./components/Payment/Cancel";
 
 // this is use for optimisation our app..lazy loading helps to optimize our app and this makes our app fast
 // use this case when app is producation ready means npm run build
@@ -34,11 +41,14 @@ function App() {
   const [cord, setCord] = useState({ lat: 28.7111675, lng: 77.0722759 });
   return (
     <>
-      <Coordinates.Provider value={{ cord, setCord }}>
-        <Headers />
-        <Outlet />
-        <Footer />
-      </Coordinates.Provider>
+      <Provider store={store}>
+        <Coordinates.Provider value={{ cord, setCord }}>
+          <Headers />
+          <Outlet />
+          <Toaster />
+          <Footer />
+        </Coordinates.Provider>
+      </Provider>
     </>
   );
 }
@@ -99,6 +109,16 @@ export const appRouter = createBrowserRouter([
             <Wishlist />
           </RequireAuth>
         ),
+      },
+      {
+        path: "/sucess",
+
+        element: <Succes />,
+      },
+      {
+        path: "/cancel",
+
+        element: <Cancel />,
       },
       {
         path: "/orders",

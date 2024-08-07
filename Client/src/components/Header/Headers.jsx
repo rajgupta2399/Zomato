@@ -42,8 +42,9 @@ import { BarLoader } from "react-spinners";
 import useOnlineStatus from "../Hook/useOnlineStatus.jsx";
 import { Sidebar } from "primereact/sidebar";
 import InputButton from "../Hero/InputButton.jsx";
-import { Coordinates } from "../Context/ContextApi.js";
+import { CardContext, Coordinates } from "../Context/ContextApi.js";
 import { Divider } from "@nextui-org/divider";
+import { useSelector } from "react-redux";
 // import { Button } from "primereact/button";
 
 function classNames(...classes) {
@@ -71,6 +72,9 @@ export default function Headers() {
   const onlineStatus = useOnlineStatus();
   const { cord, setCord } = useContext(Coordinates);
   const [address, setAddress] = useState("Delhi NCR");
+  // const { cartData,setCartData } = useContext(CardContext);
+
+  const cartData = useSelector((state) => state.cartSlice.cartItems);
 
   async function searchResultFunc(e) {
     if (e == "") return;
@@ -230,7 +234,7 @@ export default function Headers() {
               style={styleCard}
             >
               <FaCartShopping className="inline-block text-xl mr-1 mb-1" />
-              Cart
+              Cart {cartData.length}
             </Link>
           </Popover.Group>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-3">
@@ -350,15 +354,15 @@ export default function Headers() {
                   >
                     Search
                   </Link>
-                  {/** 
+
                   <Link
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    to="/About"
+                    to="/Cart"
                     style={styleCard}
                   >
-                    Offers
+                    Cart
                   </Link>
-                  */}
+
                   <Link
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     to="/Contact"
