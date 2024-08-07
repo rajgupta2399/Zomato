@@ -41,14 +41,14 @@ const DetailMenu = ({ info, restMenuInfo }) => {
         setIsDiffRes((prev) => !prev);
       }
     } else {
-      alert("Already Added");
+      toast.error("Already Added");
     }
   };
 
   const handleClearCart = () => {
-    dispatch(clearCart())
+    dispatch(clearCart());
     toast.success("Cart is Cleared");
-    handleIsDiffRes()
+    handleIsDiffRes();
   };
   const handleIsDiffRes = () => {
     setIsDiffRes((prev) => !prev);
