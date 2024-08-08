@@ -42,8 +42,8 @@ app.post("/api/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: "http://localhost:5173/sucess",
-      cancel_url: "http://localhost:5173/cancel",
+      success_url: "https://swiggybyrk.netlify.app/orders",
+      cancel_url: "https://swiggybyrk.netlify.app/orders",
     });
 
     res.json({ id: session.id });
