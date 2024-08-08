@@ -341,7 +341,9 @@ export default function Headers() {
                           className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           style={styleCard}
                         >
-                          <Link to="/">Home</Link>
+                          <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+                            Home
+                          </Link>
                         </Disclosure.Button>
                       </>
                     )}
@@ -351,6 +353,7 @@ export default function Headers() {
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     to="/Search"
                     style={styleCard}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Search
                   </Link>
@@ -359,6 +362,7 @@ export default function Headers() {
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     to="/Cart"
                     style={styleCard}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Cart
                   </Link>
@@ -367,16 +371,18 @@ export default function Headers() {
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     to="/Contact"
                     style={styleCard}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Help
                   </Link>
                 </div>
 
-                <div className="py-6">
+                <div className="py-6 flex justify-between">
                   <Link
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     to="/Contact"
                     style={styleCard}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     <span
                       onClick={() => {
@@ -389,6 +395,33 @@ export default function Headers() {
                       LogOut
                     </span>
                   </Link>
+                  <div className=" flex flex-row-reverse">
+                    <button
+                      onClick={() => {
+                        setTheme(resolvedTheme === "light" ? "dark" : "light");
+                      }}
+                      type="button"
+                      className="rounded-md p-2 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    >
+                      {theme === "light" ? <MoonIcon /> : <SunIcon />}
+                    </button>
+                    <DropdownMenu className="">
+                      <DropdownMenuTrigger>
+                        <Avatar>
+                          <AvatarImage
+                            src={user?.user_metadata?.profile_pic}
+                            className="object-cover"
+                          />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className=" w-40">
+                        <DropdownMenuLabel className="text-center">
+                          {"Welcome," + user?.user_metadata?.name}
+                        </DropdownMenuLabel>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                 </div>
               </div>
             </div>
