@@ -51,7 +51,7 @@ const Cart = () => {
       "Content-Type": "application/json",
     };
     const response = await fetch(
-      "https://zomato-kxkp.onrender.com/api/create-checkout-session",
+      "https://zomato-1-g57k.onrender.com/api/create-checkout-session",
       {
         method: "POST",
         headers: headers,
