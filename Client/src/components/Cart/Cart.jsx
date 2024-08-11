@@ -6,6 +6,7 @@ import { clearCart, deleteItem } from "../Utils/Store/cartSlice";
 import toast from "react-hot-toast";
 import { loadStripe } from "@stripe/stripe-js";
 import { CDN_URL } from "../Utils/Constant";
+import { addOrder } from "../Utils/Store/orderSlice";
 
 const Cart = () => {
   // const { cartData, setCartData } = useContext(CardContext);
@@ -44,27 +45,39 @@ const Cart = () => {
     const stripe = await loadStripe(
       "pk_test_51Pl9c2RqhNQgZku40qHUyeerTvURu2VdukhDZbj8JJ4XMFdlpSFsDadVuaXj5DqEeZYfJLWDE997eNKvcqMcLMea00i9ehkR7E"
     );
+
     const body = {
       products: cartData,
     };
+
     const headers = {
       "Content-Type": "application/json",
     };
+
     const response = await fetch(
-      "https://zomato-1-g57k.onrender.com/api/create-checkout-session",
+      "http://localhost:7000/api/create-checkout-session",
       {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),
       }
     );
+
     const session = await response.json();
+
+    // Save the order before clearing the cart
+    const orderDetails = {
+      date: new Date().toLocaleString(), // Current date and time
+      items: cartData,
+    };
+
+    dispatch(addOrder(orderDetails)); // Dispatch the order details to Redux
+
+    handleClearCart(); // Clear the cart after saving the order
 
     const result = stripe.redirectToCheckout({
       sessionId: session.id,
     });
-
-    handleClearCart();
 
     if (result.error) {
       console.log(result.error);
@@ -75,9 +88,9 @@ const Cart = () => {
     return (
       <div className="w-full">
         <div className="w-[50%]  mx-auto flex justify-center align-middle flex-col">
-          <h1>kuch order krle bhai bhuka marega kya....</h1>
-          <Link to="/" className="bg-green-500 p-2 inline-block my-3">
-            Yaha se krle bhai order
+          <h1 className="font-semibold text-xl text-center mt-10 mb-4">kuch order krle bhai bhuka marega kya....</h1>
+          <Link to="/" className="bg-green-500 p-2 inline-block my-3 text-center">
+            Order Here
           </Link>
         </div>
       </div>

@@ -111,16 +111,6 @@ export const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/sucess",
-
-        element: <Succes />,
-      },
-      {
-        path: "/cancel",
-
-        element: <Cancel />,
-      },
-      {
         path: "/orders",
 
         element: (
