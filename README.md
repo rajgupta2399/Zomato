@@ -54,6 +54,7 @@ Locally Hosted Link : https://main--swiggybyrk.netlify.app
 - BackEnd
     - Stripe
           <br />
+![Alt text](C:\Users\Raj Kumar\portfolio\zomato\zomato\Client\public\assets\image-1.png)
 <h1>💖 Support This Project</h1>
 <p>Thank you for taking the time to explore Food Ordering App.This project represents an in-depth implementation of features extracted from the inspiring course "Namaste-React" by Akshay Saini. It's been a rewarding journey, and I'm genuinely grateful for the opportunity to create and share this with the community.</p>
 <p>I want to express my heartfelt thanks to everyone who has shown interest and provided feedback. Your support and involvement mean a lot to me.</p>
