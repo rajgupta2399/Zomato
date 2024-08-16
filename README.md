@@ -54,41 +54,12 @@ Locally Hosted Link : https://main--swiggybyrk.netlify.app
 - BackEnd
     - Stripe
           <br />
-
-<li>Authorisation Page</li>
-![alt text](image.png)
-          <br />
-<li>Shimmer Ui Effect</li>
-![alt text](image-1.png)
-          <br />
-<li>Home Page</li>
-![alt text](z.png)
-          <br />
-<li>Search Location</li>
-![alt text](image-2.png)
-          <br />
-<li>Search Functionality</li>
-![alt text](image-3.png)
-          <br />
-<li>Search Restaurant</li>
-![alt text](image-4.png)
-          <br />
-<li>Menu Page</li>
-![alt text](image-5.png)
-          <br />
-<li>Add To Cart</li>
-![alt text](image-6.png)
-          <br />
-<li>Checkout Page</li>
-![alt text](image-7.png)
-          <br />
 <h1>💖 Support This Project</h1>
 <p>Thank you for taking the time to explore Food Ordering App.This project represents an in-depth implementation of features extracted from the inspiring course "Namaste-React" by Akshay Saini. It's been a rewarding journey, and I'm genuinely grateful for the opportunity to create and share this with the community.</p>
 <p>I want to express my heartfelt thanks to everyone who has shown interest and provided feedback. Your support and involvement mean a lot to me.</p>
 <p>If you have any questions, suggestions, or just want to connect, feel free to reach out.</p>
           <br />
 <Happy coding />
-          <br />
 <h1>🙏 Thank You 🙏</h1>
 <p>Feel free to modify it to suit the tone and style of your project. The goal is to encourage participation, collaboration and learning.</p>
 <p>Made with ❤️ and React.</p>
