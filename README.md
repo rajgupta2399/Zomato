@@ -6,9 +6,9 @@
 <li>Install the Node Module Folder : npm install</li>
 <li>Run Command : npm run dev</li>
 
-<h2>Create .env file and put configure</li>
-<p>VITE_SUPABASE_URL=YOUR_BASE_URL_WILL_HERE</p>
-<p>VITE_SUPABASE_KEY=YOUR_API_KEY_WILL_HERE</p>
+<p>Create .env file and put configure</li>
+<li>VITE_SUPABASE_URL=YOUR_BASE_URL_WILL_HERE</;>
+<li>VITE_SUPABASE_KEY=YOUR_API_KEY_WILL_HERE</li>
 
 
 This App Divided into two parts 
