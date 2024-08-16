@@ -55,28 +55,28 @@ Locally Hosted Link : https://main--swiggybyrk.netlify.app
     - Stripe
           <br />
 <li>Authorisation Page</li>
-![image](https://github.com/user-attachments/assets/3d5360f7-6515-4b58-8b35-7fad5e6927fd)
+
 <br/>
 <li>Shimmer Ui Effect</li>
-![image-1](https://github.com/user-attachments/assets/fd8a22bf-34b5-48b0-93d6-49e0e941d97b)
+
 <br/>
 <li>Home Page</li>
-![z](https://github.com/user-attachments/assets/ec2b4768-c6d1-4549-aa92-ac416b9f63b8)
+
 <br/>
 <li>Search Location Functionality</li>
-![image-2](https://github.com/user-attachments/assets/7af5062f-2302-4b61-bd61-84979379e87e)
+
 <br/>
 <li>Search Restaurants & Dishes Functionality</li>
-![image-4](https://github.com/user-attachments/assets/369067ad-4e29-48d1-959c-0d1c42ff9e72)
+
 <br/>
 <li>Menu Page</li>
-![image-5](https://github.com/user-attachments/assets/aaf4e23c-0d5d-4d93-b7a4-3e80e69097b5)
+
 <br/>
 <li>Add to Cart</li>
-![image-6](https://github.com/user-attachments/assets/261922ae-4a56-498a-8b05-0c46955ac7bb)
+
 <br/>
 <li>Stripe Checkout Page</li>
-![image-7](https://github.com/user-attachments/assets/b3e53e10-1758-4066-a3e7-ca0720736627)
+
 <br/>
 <h1>💖 Support This Project</h1>
 <p>Thank you for taking the time to explore Food Ordering App.This project represents an in-depth implementation of features extracted from the inspiring course "Namaste-React" by Akshay Saini. It's been a rewarding journey, and I'm genuinely grateful for the opportunity to create and share this with the community.</p>
