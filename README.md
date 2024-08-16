@@ -1,4 +1,5 @@
 # Food Ordering App
+
 <p> Food Ordering App like Zomato and Swiggy</p>
           <br />
 
@@ -33,50 +34,49 @@ Locally Hosted Link : https://main--swiggybyrk.netlify.app
 <h2>Features</h2>
 
 - Home Page (is user !authorised)
-    - Signin/Signup Page
-        -SignInForm / SignUpForm
+  - Signin/Signup Page
+    -SignInForm / SignUpForm
 - Browse Page
-    - Navbar
-    - What's On Your Mind
-    - Top Restaurants Chains
-    - Restaurants Info
-    - Reastaurant Menu
-    - Search (Restaurants & Dishes)
-    - Cart Page
-    - Orders Page
-    - Search Nearby Restaurants using Location
-    - Checkout (payment Gateway Integration)
+  - Navbar
+  - What's On Your Mind
+  - Top Restaurants Chains
+  - Restaurants Info
+  - Reastaurant Menu
+  - Search (Restaurants & Dishes)
+  - Cart Page
+  - Orders Page
+  - Search Nearby Restaurants using Location
+  - Checkout (payment Gateway Integration)
 - Functionality
-    - Theme Swithcer
-    - Add to Cart
-    - Search
-    - Browse Menu
-- BackEnd
-    - Stripe
-          <br />
+  - Theme Swithcer
+  - Add to Cart
+  - Search
+  - Browse Menu
+- BackEnd - Stripe
+<br />
 <li>Authorisation Page</li>
-![Food Ordering App](image.png)
+      <img src="./Client/public/assets/image.png" alt="" />
 <br/>
 <li>Shimmer Ui Effect</li>
-
+ <img src="./Client/public/assets/image-1.png" alt="" />
 <br/>
 <li>Home Page</li>
-
+ <img src="./Client/public/assets/z.png" alt="" />
 <br/>
 <li>Search Location Functionality</li>
-
+ <img src="./Client/public/assets/image-2.png" alt="" />
 <br/>
 <li>Search Restaurants & Dishes Functionality</li>
-
+ <img src="./Client/public/assets/image-4.png" alt="" />
 <br/>
 <li>Menu Page</li>
-
+ <img src="./Client/public/assets/image-5.png" alt="" />
 <br/>
 <li>Add to Cart</li>
-
+ <img src="./Client/public/assets/image-6.png" alt="" />
 <br/>
 <li>Stripe Checkout Page</li>
-
+ <img src="./Client/public/assets/image-7.png" alt="" />
 <br/>
 <h1>💖 Support This Project</h1>
 <p>Thank you for taking the time to explore Food Ordering App.This project represents an in-depth implementation of features extracted from the inspiring course "Namaste-React" by Akshay Saini. It's been a rewarding journey, and I'm genuinely grateful for the opportunity to create and share this with the community.</p>
