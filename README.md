@@ -1,4 +1,4 @@
-<h1> Food Ordering App</h1>
+# Food Ordering App
 <p> Food Ordering App like Zomato and Swiggy</p>
           <br />
 
@@ -55,7 +55,7 @@ Locally Hosted Link : https://main--swiggybyrk.netlify.app
     - Stripe
           <br />
 <li>Authorisation Page</li>
-![alt text](image.png)
+![Food Ordering App](image.png)
 <br/>
 <li>Shimmer Ui Effect</li>
 
