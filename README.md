@@ -31,9 +31,11 @@ Locally Hosted Link : https://main--swiggybyrk.netlify.app
 <li>STRIPE_SECRET=YOUR_API_KEY_WILL_HERE</li>
           <br />
 <h2>Features</h2>
-- Home Page (is user !authorised)
-    - Signin/Signup Page
-        -SignInForm / SignUpForm
+<p> Home Page (is user !authorised)</p>
+<li>Signin/Signup Page</li>
+<li>SignInForm / SignUpForm</li>
+          <br />
+          
 - Browse Page
     - Navbar
     - What's On Your Mind
@@ -45,5 +47,10 @@ Locally Hosted Link : https://main--swiggybyrk.netlify.app
     - Orders Page
     - Search Nearby Restaurants using Location
     - Checkout (payment Gateway Integration)
+- Functionality
+    - Theme Swithcer
+    - Add to Cart
+    - Search
+    - Browse Menu
 - BackEnd
     - Stripe
