@@ -56,7 +56,15 @@ Locally Hosted Link : https://main--swiggybyrk.netlify.app
   - Browse Menu
 - BackEnd - Stripe
 <br />
+<h2>React UI Libraries</h2>
+  <li>Tailwind UI</li>
+  <li>Shadcn UI</li>
+  <li>Next UI</li>
+  <li>Headless UI</li>
+  <li>Prime React UI</li>
+<br />
 <li>Authorisation Page</li>
+<br />
       <img src="./Client/public/assets/image.png" alt="" />
 
 <li>Shimmer Ui Effect</li>
