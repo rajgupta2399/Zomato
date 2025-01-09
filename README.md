@@ -12,7 +12,7 @@ This App Divided into two parts
 2. Server Folder : Backend Based on Node and Stripe payment Gateway Running on The Server.
    <br />
 
-Locally Hosted Link : https://main--swiggybyrk.netlify.app
+Locally Hosted Link : https://fooddeliverybyrk.netlify.app/
 <br />
 
 <h2>Setup</h2>
